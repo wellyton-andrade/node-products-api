@@ -22,3 +22,12 @@ export const createProduct = async (
   reply.code(201);
   return newProduct;
 };
+
+export const getById = async (
+  request: FastifyRequest<{ Params: { id: string } }>,
+  reply: FastifyReply
+): Promise<Product | null> => {
+  const { id } = request.params;
+  const findId = await productRepository.getById(id);
+  return findId;
+};

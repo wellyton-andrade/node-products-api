@@ -3,10 +3,10 @@ import prisma from "../database/prisma.ts";
 
 export interface IProductRepository {
   getAll(): Promise<Product[]>;
-  getById(id: number): Promise<Product | null>;
+  getById(id: string): Promise<Product | null>;
   create(product: Product): Promise<Product>;
-  update(id: number, product: Partial<Product>): Promise<Product | null>;
-  delete(id: number): Promise<void>;
+  update(id: string, product: Partial<Product>): Promise<Product | null>;
+  delete(id: string): Promise<void>;
 }
 
 export class ProductRepository implements IProductRepository {
@@ -14,7 +14,7 @@ export class ProductRepository implements IProductRepository {
     return prisma.product.findMany();
   }
 
-  async getById(id: number): Promise<Product | null> {
+  async getById(id: string): Promise<Product | null> {
     return prisma.product.findUnique({ where: { id } });
   }
 
@@ -23,7 +23,7 @@ export class ProductRepository implements IProductRepository {
   }
 
   async update(
-    id: number,
+    id: string,
     productData: Partial<Product>
   ): Promise<Product | null> {
     return prisma.product.update({
@@ -32,7 +32,7 @@ export class ProductRepository implements IProductRepository {
     });
   }
 
-  async delete(id: number): Promise<void> {
+  async delete(id: string): Promise<void> {
     await prisma.product.delete({ where: { id } });
   }
 }
