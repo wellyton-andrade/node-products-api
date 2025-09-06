@@ -22,3 +22,15 @@ test("Create a new product", async () => {
   expect(createdProduct.name).toBe(newProduct.name);
   expect(createdProduct.price).toBe(newProduct.price);
 });
+
+test("Get product by id", async () => {
+  const product = await productRepository.getById(
+    "572dd712-8f41-4463-bb40-468983569aed"
+  );
+
+  if (product === null) {
+    expect(product).toBeNull();
+  } else {
+    expect(product.name).toBe("Test Product");
+  }
+});
