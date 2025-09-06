@@ -1,6 +1,10 @@
 import type { FastifyInstance } from "fastify";
-import { getAllProducts } from "../controllers/product.controller.ts";
+import {
+  createProduct,
+  getAllProducts,
+} from "../controllers/product.controller.ts";
 
-export default async function productRoutes(fastify: FastifyInstance) {
-  fastify.get("/", getAllProducts);
+export async function productRoutes(fastify: FastifyInstance) {
+  fastify.get("/product", getAllProducts);
+  fastify.post("/product", createProduct);
 }
