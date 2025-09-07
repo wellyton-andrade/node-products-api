@@ -8,8 +8,12 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "build": "tsc && prisma generate",
-    "dev": "tsx watch src/index.ts"
+    "dev": "tsx watch src/index.ts",
+    "docker:up": "docker-compose -f ./infra/docker-compose.yml up -d",
+    "docker:down": "docker-compose -f ./infra/docker-compose.yml down",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "test": "vitest"
   },
   "devDependencies": {
     "@types/node": "^24.3.1",
