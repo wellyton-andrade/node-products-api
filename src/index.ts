@@ -16,7 +16,6 @@ app.register(fastifyCors, {
 });
 app.register(formbody);
 app.register(productRoutes, { prefix: "/api" });
-
 let isReady = false;
 
 export default async function handler(req: any, res: any) {
@@ -25,4 +24,16 @@ export default async function handler(req: any, res: any) {
     isReady = true;
   }
   app.server.emit("request", req, res);
+}
+if (process.env.NODE_ENV !== "production") {
+  const port = process.env.PORT || 3000;
+  (async () => {
+    if (!isReady) {
+      await app.ready();
+      isReady = true;
+    }
+    app.server.listen(port, () => {
+      console.log(`Servidor rodando em http://localhost:${port}`);
+    });
+  })();
 }

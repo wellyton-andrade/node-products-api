@@ -1,5 +1,5 @@
 import type { FastifyRequest, FastifyReply } from "fastify";
-import type { Product } from "../models/product.model.ts";
+import type { Product } from "../models/product.model.js";
 import { ProductRepository } from "../repositories/product.repository.js";
 
 const productRepository = new ProductRepository();

@@ -6,7 +6,7 @@
     "lib": ["es2023"],
     "module": "nodenext",
     "target": "es2022",
-    "rootDir": "./api",
+    "rootDir": "src",
     "outDir": "./dist",
     "strict": true,
     "esModuleInterop": true,
