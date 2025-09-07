@@ -4,7 +4,7 @@ import {
   deleteProduct,
   getAllProducts,
   getProductById,
-} from "../controllers/product.controller.ts";
+} from "../controllers/product.controller.js";
 
 export async function productRoutes(fastify: FastifyInstance) {
   fastify.get("/product", getAllProducts);

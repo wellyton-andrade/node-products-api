@@ -1,5 +1,5 @@
-import type { Product } from "../models/product.model.ts";
-import prisma from "../database/prisma.ts";
+import type { Product } from "../models/product.model.js";
+import prisma from "../database/prisma.js";
 
 export interface IProductRepository {
   getAll(): Promise<Product[]>;

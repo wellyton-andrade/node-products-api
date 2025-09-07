@@ -1,6 +1,6 @@
 import { expect, test, beforeAll, afterAll } from "vitest";
-import { ProductRepository } from "../../repositories/product.repository.ts";
-import prisma from "../../database/prisma.ts";
+import { ProductRepository } from "../../repositories/product.repository.js";
+import prisma from "../../database/prisma.js";
 
 const productRepository = new ProductRepository();
 

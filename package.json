@@ -3,26 +3,24 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
-    "test": "vitest"
-  },
+  "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "module",
+  "scripts": {
+    "build": "tsc && prisma generate"
+  },
   "devDependencies": {
     "@types/node": "^24.3.1",
-    "nodemon": "^3.1.10",
     "prisma": "^6.15.0",
-    "ts-node": "^10.9.2",
+    "tsx": "^4.20.5",
     "typescript": "^5.9.2",
     "vitest": "^3.2.4"
   },
   "dependencies": {
+    "@fastify/cors": "^11.1.0",
     "@fastify/formbody": "^8.0.2",
     "@prisma/client": "^6.15.0",
-    "fastify": "^5.6.0",
-    "serverless-http": "^4.0.0"
+    "fastify": "^5.6.0"
   }
 }
