@@ -7,27 +7,62 @@ const productRepository = new ProductRepository();
 export const getAllProducts = async (
   request: FastifyRequest,
   reply: FastifyReply
-): Promise<Product[]> => {
+) => {
   const products = await productRepository.getAll();
-  return products;
+  return reply.status(200).send({
+    status: "success",
+    results: products.length,
+    data: products,
+  });
 };
 
 export const createProduct = async (
   request: FastifyRequest<{ Body: Product }>,
   reply: FastifyReply
-): Promise<Product> => {
+) => {
   const product = request.body as Product;
 
   const newProduct = await productRepository.create(product);
-  reply.code(201);
-  return newProduct;
+  return reply.status(201).send({
+    status: "success",
+    message: "Product created successfully",
+    data: newProduct,
+  });
 };
 
-export const getById = async (
+export const getProductById = async (
   request: FastifyRequest<{ Params: { id: string } }>,
   reply: FastifyReply
-): Promise<Product | null> => {
+) => {
   const { id } = request.params;
-  const findId = await productRepository.getById(id);
-  return findId;
+  const product = await productRepository.getById(id);
+
+  if (!product) {
+    return reply.status(404).send({
+      status: "error",
+      message: "Product not found",
+    });
+  }
+
+  return reply.status(200).send({
+    status: "success",
+    data: product,
+  });
+};
+
+export const deleteProduct = async (
+  request: FastifyRequest<{ Params: { id: string } }>,
+  reply: FastifyReply
+) => {
+  const { id } = request.params;
+
+  try {
+    await productRepository.delete(id);
+    return reply.status(204).send();
+  } catch (err) {
+    return reply.status(404).send({
+      status: "error",
+      message: "Product not found",
+    });
+  }
 };
