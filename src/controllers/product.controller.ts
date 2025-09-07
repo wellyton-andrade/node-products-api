@@ -66,3 +66,25 @@ export const deleteProduct = async (
     });
   }
 };
+
+export const updateProduct = async (
+  request: FastifyRequest<{ Params: { id: string }; Body: Partial<Product> }>,
+  reply: FastifyReply
+) => {
+  const { id } = request.params;
+  const productData = request.body as Partial<Product>;
+
+  try {
+    const updatedProduct = await productRepository.update(id, productData);
+    return reply.status(200).send({
+      status: "success",
+      message: "Product updated successfully",
+      data: updatedProduct,
+    });
+  } catch (err) {
+    return reply.status(404).send({
+      status: "error",
+      message: "Product not found",
+    });
+  }
+};

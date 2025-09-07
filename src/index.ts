@@ -11,7 +11,7 @@ app.get("/", async () => {
 
 app.register(fastifyCors, {
   origin: "*",
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
   allowedHeaders: ["Content-Type", "Authorization"],
 });
 app.register(formbody);
