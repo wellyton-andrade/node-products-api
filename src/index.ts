@@ -1,16 +1,13 @@
-import app from "./app.ts";
-import { productRoutes } from "./router/product.router.ts";
+import fastify from "fastify";
+import serverless from "serverless-http";
 import formbody from "@fastify/formbody";
-const port = 3000;
-app.register(productRoutes, { prefix: "/api/" });
-app.register(formbody);
+import { productRoutes } from "./router/product.router.ts";
 
-app
-  .listen({ port })
-  .then(() => {
-    console.log(`Server running on port ${port}`);
-  })
-  .catch((err) => {
-    console.error(err);
-    process.exit(1);
-  });
+const app = fastify({ logger: true });
+
+app.register(formbody);
+app.register(productRoutes, { prefix: "/api" });
+
+export const handler = serverless(app as any);
+
+export default app;
