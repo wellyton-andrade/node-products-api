@@ -99,7 +99,7 @@ Inicie os serviços necessários (banco de dados, etc.) usando o comando:
 npm run docker:up
 ```
 
-Este comando utiliza o `docker-compose.yaml` para subir os serviços em segundo plano.
+Este comando utiliza o `docker-compose.yml` para subir os serviços em segundo plano.
 
 ---
 
